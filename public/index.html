@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Keycloak Authentication</title>
+  <style>
+    /* Initially hide the user-info div */
+    #user-info {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Keycloak Authentication</h1>
+  <button id="loginButton">Login</button>
+  <button id="refreshTokenButton">Token Refresh</button>
+  <button id="logoutButton">Logout</button>
+
+  <!-- Display user information -->
+  <div id="user-info">
+    <p id="display_name"></p>
+  </div>  
+
+  <script>
+    document.getElementById('loginButton').onclick = function () {
+      window.location.href = '/login';
+    };
+
+    document.getElementById('refreshTokenButton').onclick = async  function () {
+      try {
+        const response = await fetch('/refresh-token');
+        if (response.ok) {
+          const data = await response.json();
+          alert('Access token refreshed successfully');
+          // Optionally, update cookies or display refreshed info
+        } else {
+          alert('Failed to refresh access token');
+        }
+      } catch (error) {
+        console.error('Error refreshing access token:', error);
+        alert('Error refreshing access token');
+      }
+    };
+
+    document.getElementById('logoutButton').onclick = function () {
+      window.location.href = '/logout';
+    };
+
+    // Function to get the value of a specific cookie by name
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    // Read the display_name and lotus cookies and display them
+    document.addEventListener('DOMContentLoaded', () => {
+      const displayName =decodeURI( getCookie('display_name') );
+      const userInfoDiv = document.getElementById('user-info');
+
+      if (typeof displayName != 'undefined' && displayName != 'undefined') {
+        document.getElementById('display_name').textContent = `Display Name: ${displayName}`;
+        userInfoDiv.style.display = 'block';
+      } else {
+        userInfoDiv.style.display = 'none';
+      }
+
+    });
+  </script>
+</body>
+</html>
