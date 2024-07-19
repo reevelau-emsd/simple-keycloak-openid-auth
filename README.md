@@ -20,7 +20,7 @@ This application demonstrates how to authenticate users with Keycloak using the 
 1. Clone the Repository:
 
 ```
-git clone <repository_url>
+git clone https://github.com/reevelau-emsd/simple-keycloak-openid-auth.git
 cd simple-keycloak-openid-auth
 ```
 
