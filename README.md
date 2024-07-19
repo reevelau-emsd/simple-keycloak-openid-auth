@@ -1,4 +1,4 @@
-#Keycloak Authentication App
+#Simple Keycloak OpenIDConnect Authentication
 
 This application demonstrates how to authenticate users with Keycloak using the OpenID Connect protocol, without using the official Keycloak JavaScript client (keycloak.js). It includes login, logout, and token refresh functionality, with token information stored in cookies.
 
