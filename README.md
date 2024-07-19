@@ -1,21 +1,21 @@
-#Simple Keycloak OpenIDConnect Authentication
+# Simple Keycloak OpenIDConnect Authentication
 
 This application demonstrates how to authenticate users with Keycloak using the OpenID Connect protocol, without using the official Keycloak JavaScript client (keycloak.js). It includes login, logout, and token refresh functionality, with token information stored in cookies.
 
-##Features
+## Features
 
     - Login: Redirects users to Keycloak for authentication.
     - Logout: Logs out users from Keycloak and clears authentication cookies.
     - Token Refresh: Refreshes the access token using the refresh token.
     - Display User Information: Shows user information (e.g., display name, lotus) stored in cookies.
 
-##Prerequisites
+## Prerequisites
 
     - Node.js
     - Keycloak server
     - Docker (optional, for containerization)
   
-##Setup
+## Setup
 
 1. Clone the Repository:
 
