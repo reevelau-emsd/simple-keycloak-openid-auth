@@ -22,12 +22,12 @@
 
   <script>
     document.getElementById('loginButton').onclick = function () {
-      window.location.href = '/login';
+      window.location.href = './login';
     };
 
     document.getElementById('refreshTokenButton').onclick = async  function () {
       try {
-        const response = await fetch('/refresh-token');
+        const response = await fetch('./refresh-token');
         if (response.ok) {
           const data = await response.json();
           location.reload(true);
@@ -41,7 +41,7 @@
     };
 
     document.getElementById('logoutButton').onclick = function () {
-      window.location.href = '/logout';
+      window.location.href = './logout';
     };
 
     // Function to get the value of a specific cookie by name
