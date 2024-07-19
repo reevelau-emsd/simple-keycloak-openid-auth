@@ -30,8 +30,7 @@
         const response = await fetch('/refresh-token');
         if (response.ok) {
           const data = await response.json();
-          alert('Access token refreshed successfully');
-          // Optionally, update cookies or display refreshed info
+          location.reload(true);
         } else {
           alert('Failed to refresh access token');
         }

@@ -43,9 +43,12 @@ app.get('/callback', async (req, res) => {
     const expiresIn = jwt.exp - Math.floor(Date.now() / 1000);
 
     res.cookie('access_token', tokens.access_token, {httpOnly: true, maxAge: expiresIn * 1000 });
-    res.cookie('refresh_token', tokens.refresh_token, {httpOnly:true, maxAge: expiresIn * 1000 });
     res.cookie('id_token', tokens.id_token, {httpOnly: true, maxAge: expiresIn * 1000 });
     res.cookie('display_name', jwt.display_name, { maxAge: expiresIn * 1000 });
+
+    const refreshExpiresIn = tokens.refresh_expires_in;
+    res.cookie('refresh_token', tokens.refresh_token, {httpOnly:true, maxAge: refreshExpiresIn * 1000 });
+
 
     res.redirect('/');
   } catch (error) {
@@ -70,9 +73,11 @@ app.get('/refresh-token', async (req, res) => {
 
     // Update the tokens as cookies
     res.cookie('access_token', tokens.access_token, { httpOnly: true, maxAge: expiresIn * 1000 });
-    res.cookie('refresh_token', tokens.refresh_token, { httpOnly: true, maxAge: expiresIn * 1000 });
     res.cookie('id_token', tokens.id_token, { httpOnly: true, maxAge: expiresIn * 1000 });
     res.cookie('display_name', jwt.display_name, { maxAge: expiresIn * 1000 });
+
+    const refreshExpiresIn = tokens.refresh_expires_in;
+    res.cookie('refresh_token', tokens.refresh_token, { httpOnly: true, maxAge: refreshExpiresIn * 1000 });
 
     res.json({ message: 'Access token refreshed successfully' });
   } catch (error) {
