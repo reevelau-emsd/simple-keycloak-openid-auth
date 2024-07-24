@@ -7,7 +7,7 @@ This application demonstrates how to authenticate users with Keycloak using the 
     - Login: Redirects users to Keycloak for authentication.
     - Logout: Logs out users from Keycloak and clears authentication cookies.
     - Token Refresh: Refreshes the access token using the refresh token.
-    - Display User Information: Shows user information (e.g., display name, lotus) stored in cookies.
+    - Display User Information: Shows user information (e.g., display name) stored in cookies.
 
 ## Prerequisites
 
@@ -67,7 +67,7 @@ node server.js
 Navigate to http://localhost:3000 in your browser.
 
 
-### Run with docker
+### Run with docker (optional)
 1. Build the image
 ```
 docker build -t simple-keycloak-openid-auth:latest .
@@ -101,7 +101,7 @@ docker run --rm --name simple-keycloak-openid-auth -p 3000:3000 --env-file .env 
 ### Cookie Management
 
     - Access Token Cookie: Expires with the access token.
-    - Refresh Token Cookie: Expires with the access token.
+    - Refresh Token Cookie: Expires with the refresh token.
     - ID Token Cookie: Expires with the access token.
     - User Information Cookies: Expires with the access token.
 
