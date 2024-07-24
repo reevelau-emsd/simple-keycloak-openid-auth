@@ -31,7 +31,7 @@ npm install
 ```
 
 3. Create Environment Variables:
-Create a .env file with the following content:
+Create a ```.env``` file with the following content:
 
 ```
 KEYCLOAK_SERVER_URL=https://keycloak.example.com/auth
