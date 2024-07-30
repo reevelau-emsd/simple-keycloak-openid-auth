@@ -2,7 +2,7 @@ const axios = require("axios");
 const jwt = require("jsonwebtoken");
 
 const https = require("https");
-const agent = new https.Agent({ rejectUnauthorized: false });
+const agent = new https.Agent();
 
 /**
  * Constructs the login redirect URL for Keycloak's authorization endpoint.
@@ -169,13 +169,15 @@ function getLogoutUrl(
   idToken,
   postLogoutRedirectUri
 ) {
-  const logoutUrl = `${keycloakServerUrl}` +
-                    `/realms/${realm}` +
-                    `/protocol/openid-connect/logout?` +
-                    `client_id=${clientId}` +
-                    `&id_token_hint=${idToken}` +
-                    `&post_logout_redirect_uri=${encodeURIComponent(postLogoutRedirectUri)}`;
-  return logoutUrl;
+  return ( 
+    `${keycloakServerUrl}` +
+    `/realms/${realm}` +
+    `/protocol/openid-connect/logout?` +
+    `client_id=${clientId}` +
+    `&id_token_hint=${idToken}` +
+    `&post_logout_redirect_uri=${encodeURIComponent(postLogoutRedirectUri)}` 
+  );
+
 }
 
 module.exports = {

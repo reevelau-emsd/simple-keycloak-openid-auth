@@ -66,6 +66,29 @@ node server.js
 2. Open the Application:
 Navigate to http://localhost:3000 in your browser.
 
+### Run with Trusted CA Cert
+
+1. Start the Server:
+```
+NODE_EXTRA_CA_CERTS=path/to/ca/certificates.pem node server.js
+```
+
+2. Open the Application:
+Navigate to http://localhost:3000 in your browser.
+
+```path/to/ca/certificates.pem``` should contain a chain of trusted CA cert.
+
+### Run with cert validation disabled (for dev only!)
+
+1. Start the Server:
+```
+NODE_TLS_REJECT_UNAUTHORIZED=0 node server.js
+```
+
+2. Open the Application:
+Navigate to http://localhost:3000 in your browser.
+
+[NODE_TLS_REJECT_UNAUTHORIZED=0](https://nodejs.org/api/cli.html#node_tls_reject_unauthorizedvalue); This makes TLS, and HTTPS by extension, insecure. The use of this environment variable is strongly discouraged.
 
 ### Run with docker (optional)
 1. Build the image
