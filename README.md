@@ -7,7 +7,7 @@ This application demonstrates how to authenticate users with Keycloak using the 
     - Login: Redirects users to Keycloak for authentication.
     - Logout: Logs out users from Keycloak and clears authentication cookies.
     - Token Refresh: Refreshes the access token using the refresh token.
-    - Display User Information: Shows user information (e.g., display name, lotus) stored in cookies.
+    - Display User Information: Shows user information (e.g., display name) stored in cookies.
 
 ## Prerequisites
 
@@ -31,7 +31,7 @@ npm install
 ```
 
 3. Create Environment Variables:
-Create a .env file with the following content:
+Create a ```.env``` file with the following content:
 
 ```
 KEYCLOAK_SERVER_URL=https://keycloak.example.com/auth
@@ -66,8 +66,31 @@ node server.js
 2. Open the Application:
 Navigate to http://localhost:3000 in your browser.
 
+### Run with Trusted CA Cert
 
-### Run with docker
+1. Start the Server:
+```
+NODE_EXTRA_CA_CERTS=path/to/ca/certificates.pem node server.js
+```
+
+2. Open the Application:
+Navigate to http://localhost:3000 in your browser.
+
+```path/to/ca/certificates.pem``` should contain a chain of trusted CA cert.
+
+### Run with cert validation disabled (for dev only!)
+
+1. Start the Server:
+```
+NODE_TLS_REJECT_UNAUTHORIZED=0 node server.js
+```
+
+2. Open the Application:
+Navigate to http://localhost:3000 in your browser.
+
+[NODE_TLS_REJECT_UNAUTHORIZED=0](https://nodejs.org/api/cli.html#node_tls_reject_unauthorizedvalue); This makes TLS, and HTTPS by extension, insecure. The use of this environment variable is strongly discouraged.
+
+### Run with docker (optional)
 1. Build the image
 ```
 docker build -t simple-keycloak-openid-auth:latest .
@@ -101,7 +124,7 @@ docker run --rm --name simple-keycloak-openid-auth -p 3000:3000 --env-file .env 
 ### Cookie Management
 
     - Access Token Cookie: Expires with the access token.
-    - Refresh Token Cookie: Expires with the access token.
+    - Refresh Token Cookie: Expires with the refresh token.
     - ID Token Cookie: Expires with the access token.
     - User Information Cookies: Expires with the access token.
 
