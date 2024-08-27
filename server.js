@@ -42,6 +42,9 @@ app.get('/callback', async (req, res) => {
     let jwt = await verifyAccessToken(KEYCLOAK_SERVER_URL, KEYCLOAK_REALM,KEYCLOAK_CLIENT_ID, tokens.access_token);
     const expiresIn = jwt.exp - Math.floor(Date.now() / 1000);
 
+    // Upon successful authentication, the server should establish a local user session to securely store the tokens. 
+    // For demonstration purposes, this example stores the tokens in cookies. For production
+
     res.cookie('access_token', tokens.access_token, {httpOnly: true, maxAge: expiresIn * 1000 });
     res.cookie('id_token', tokens.id_token, {httpOnly: true, maxAge: expiresIn * 1000 });
     res.cookie('display_name', jwt.display_name, { maxAge: expiresIn * 1000 });
