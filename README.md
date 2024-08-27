@@ -49,7 +49,10 @@ simple-keycloak-openid-auth/
 │   └── index.html
 ├── .dockerignore
 ├── .env
+├── .gitignore
 ├── Dockerfile
+├── README.md
+├── keycloak-openidconnect.js
 ├── package.json
 ├── package-lock.json
 └── server.js
